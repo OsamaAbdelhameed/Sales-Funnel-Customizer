@@ -1,0 +1,11 @@
+services:
+  spacetimedb:
+    image: clockworklabs/spacetime:latest
+    ports:
+      - "3001:3000"
+    command: start
+    volumes:
+      - spacetimedb_data:/var/lib/spacetimedb
+
+volumes:
+  spacetimedb_data:
