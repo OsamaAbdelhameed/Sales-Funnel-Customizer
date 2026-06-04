@@ -21,8 +21,16 @@ const GlobeBackground = (_props: GlobeBackgroundProps) => {
 		const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 		camera.position.z = 3.5;
 
+		const canvas = canvasRef.current;
+		const webglContext =
+			canvas.getContext("webgl2") ||
+			canvas.getContext("webgl") ||
+			canvas.getContext("experimental-webgl");
+		if (!webglContext) return;
+
 		const renderer = new THREE.WebGLRenderer({
-			canvas: canvasRef.current,
+			canvas,
+			context: webglContext,
 			antialias: true,
 			alpha: true,
 		});
